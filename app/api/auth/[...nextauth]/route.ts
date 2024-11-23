@@ -4,6 +4,7 @@ import Discord from "next-auth/providers/discord";
 const DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID;
 const DISCORD_CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET;
 const NEXTAUTH_URL = process.env.NEXTAUTH_URL;
+const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET;
 
 if (!DISCORD_CLIENT_ID) {
   throw new Error("DISCORD_CLIENT_ID is a required env variable.");
@@ -15,6 +16,9 @@ if (!DISCORD_CLIENT_SECRET) {
 
 if (!NEXTAUTH_URL) {
   throw new Error("NEXTAUTH_URL is a required env variable.");
+}
+if (!NEXTAUTH_SECRET) {
+  throw new Error("NEXTAUTH_SECRET is a required env variable.");
 }
 
 export const authOptions = {
@@ -28,6 +32,7 @@ export const authOptions = {
     async redirect({ url, baseUrl }) {
       return baseUrl + "/dashboard";
     },
+    secret: NEXTAUTH_SECRET,
   },
 };
 
