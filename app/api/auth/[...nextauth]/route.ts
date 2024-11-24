@@ -26,6 +26,11 @@ export const authOptions = {
     Discord({
       clientId: DISCORD_CLIENT_ID,
       clientSecret: DISCORD_CLIENT_SECRET,
+      authorization: {
+        params: {
+          scope: "identify email guilds",
+        },
+      },
     }),
   ],
   callbacks: {
