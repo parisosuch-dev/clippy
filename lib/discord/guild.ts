@@ -26,3 +26,7 @@ export const getUserGuilds = async () => {
 
   return data as Guild[];
 };
+
+export const getGuildIconURL = (guild: Guild) => {
+  return `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`;
+};
