@@ -29,7 +29,19 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async redirect({ url, baseUrl }) {
+    async jwt({ token, account }: { token: any; account: any }) {
+      // Add access token to JWT on the initial sign-in
+      if (account) {
+        token.accessToken = account.access_token;
+      }
+      return token;
+    },
+    async session({ session, token }: { session: any; token: any }) {
+      // Pass access token to the session object
+      session.accessToken = token.accessToken;
+      return session;
+    },
+    async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
       return baseUrl + "/dashboard";
     },
     secret: NEXTAUTH_SECRET,
