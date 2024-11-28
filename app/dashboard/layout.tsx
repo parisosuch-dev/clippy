@@ -3,6 +3,12 @@ import { getServers } from "@/lib/clippy/server";
 import { getUserGuild, Guild } from "@/lib/discord/guild";
 import Link from "next/link";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default async function DashboardLayout({
   children,
@@ -20,14 +26,23 @@ export default async function DashboardLayout({
     <div className="flex flex-row">
       <aside>
         {guilds.map((guild) => (
-          <div>
-            <Link href={`/dashboard/${guild.id}`}>
-              <Avatar>
-                <AvatarImage
-                  src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
-                ></AvatarImage>
-              </Avatar>
-            </Link>
+          <div id={guild.id}>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link href={`/dashboard/${guild.id}`}>
+                    <Avatar>
+                      <AvatarImage
+                        src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
+                      ></AvatarImage>
+                    </Avatar>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{guild.name}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         ))}
       </aside>
