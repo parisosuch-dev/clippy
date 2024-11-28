@@ -18,12 +18,8 @@ export async function GET(req: NextApiRequest) {
       },
     });
 
-    console.log(response.text);
-
     if (!response.ok) throw new Error("Failed to fetch guilds");
     const guilds = await response.json();
-
-    console.log(guilds);
 
     return NextResponse.json(guilds);
   } catch (error) {
