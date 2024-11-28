@@ -23,7 +23,7 @@ export default async function DashboardLayout({
     guilds.push(guild);
   }
   return (
-    <div className="flex flex-row h-full p-8">
+    <div className="flex flex-row h-full p-8 space-x-2">
       <aside className="bg-clippy-primary/50 rounded-xl h-full p-4">
         {guilds.map((guild) => (
           <div id={guild.id}>
@@ -46,7 +46,7 @@ export default async function DashboardLayout({
           </div>
         ))}
       </aside>
-      <main>{children}</main>
+      <main className="w-full h-full">{children}</main>
     </div>
   );
 }
