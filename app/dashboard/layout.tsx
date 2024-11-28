@@ -23,8 +23,8 @@ export default async function DashboardLayout({
     guilds.push(guild);
   }
   return (
-    <div className="flex flex-row">
-      <aside>
+    <div className="flex flex-row h-full p-8">
+      <aside className="bg-clippy-primary/50 rounded-xl h-full p-4">
         {guilds.map((guild) => (
           <div id={guild.id}>
             <TooltipProvider>
