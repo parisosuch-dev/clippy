@@ -23,15 +23,15 @@ export default async function DashboardLayout({
     guilds.push(guild);
   }
   return (
-    <div className="flex flex-row h-full px-8 pb-8 space-x-2">
-      <aside className="rounded-xl h-full p-4">
+    <div className="flex flex-row h-full px-8 pb-8 space-x-8">
+      <aside className="rounded-xl h-full">
         {guilds.map((guild) => (
           <div id={guild.id}>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link href={`/dashboard/${guild.id}`}>
-                    <Avatar>
+                  <Link href={`/dashboard/${guild.id}`} className="group">
+                    <Avatar className="transition-all duration-100 ease-in-out group-hover:rounded-md">
                       <AvatarImage
                         src={`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`}
                       ></AvatarImage>
